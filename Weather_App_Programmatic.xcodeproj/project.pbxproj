@@ -27,6 +27,7 @@
 		85FB5523235120C7009D6BBA /* CustomButton - Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB5522235120C7009D6BBA /* CustomButton - Extension.swift */; };
 		85FB552C23512775009D6BBA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552A23512775009D6BBA /* PhotoModel.swift */; };
 		85FB552D23512775009D6BBA /* favoritePhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552B23512775009D6BBA /* favoritePhotosModel.swift */; };
+		85FB552F235129E5009D6BBA /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		85FB5522235120C7009D6BBA /* CustomButton - Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomButton - Extension.swift"; sourceTree = "<group>"; };
 		85FB552A23512775009D6BBA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		85FB552B23512775009D6BBA /* favoritePhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritePhotosModel.swift; sourceTree = "<group>"; };
+		85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				85FB55022350BDDC009D6BBA /* WeatherAPIClient.swift */,
+				85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */,
 			);
 			path = APIClients;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				85FB55052350BE0A009D6BBA /* WeatherModel.swift in Sources */,
 				85FB55012350BDB8009D6BBA /* PersistenceHelper.swift in Sources */,
 				85FB54F92350BD86009D6BBA /* NetworkHelper.swift in Sources */,
+				85FB552F235129E5009D6BBA /* PhotoAPIClient.swift in Sources */,
 				85FB54D52350BB95009D6BBA /* AppDelegate.swift in Sources */,
 				85FB551F2351044B009D6BBA /* CALayer-CustomExtension.swift in Sources */,
 				85FB54FC2350BD86009D6BBA /* ImageHelper.swift in Sources */,
