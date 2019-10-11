@@ -15,7 +15,11 @@ class WeatherViewController: UIViewController {
         case weatherCell
         
     }
-    var weatherView:WeatherView!
+    var weatherLocation:WeatherModel!{
+        didSet{
+            weatherForecastLoaction.text = weatherLocation.timezone.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ")
+        }
+    }
     var weather = [DailyDatum](){
         didSet{
             DispatchQueue.main.async {
@@ -26,7 +30,7 @@ class WeatherViewController: UIViewController {
     
     let weatherForecastLoaction:UILabel = {
         let label = UILabel(color: .black, font: .systemFont(ofSize: 20))
-        label.text = "Weather Forecast for"
+        label.text = "Weather Forecast for ..."
         return label
     }()
     
@@ -83,8 +87,8 @@ class WeatherViewController: UIViewController {
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                     case .success(let weather):
-                        self.weather = weather
-                        
+                        self.weather = weather.daily.data
+                        self.weatherLocation = weather
                         
                     }
                 }

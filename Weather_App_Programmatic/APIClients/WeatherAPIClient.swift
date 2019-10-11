@@ -14,7 +14,7 @@ struct WeatherAPIClient {
     let secretKey = "62b1f74dc8e686e4532c285fc63794f3"
     
     
-    func fetchData(zipCode:String, completionHandler: @escaping (Result<[DailyDatum],AppError>)->()){
+    func fetchData(zipCode:String, completionHandler: @escaping (Result<WeatherModel,AppError>)->()){
         
         let urlString = "https://api.darksky.net/forecast/\(secretKey)/\(zipCode)"
         
@@ -31,7 +31,7 @@ struct WeatherAPIClient {
                 
                 do{
                     let weatherData = try JSONDecoder().decode(WeatherModel.self, from: data)
-                    completionHandler(.success(weatherData.daily.data))
+                    completionHandler(.success(weatherData))
                 }catch{
                     completionHandler(.failure(.other(rawError: error)))
                 }
