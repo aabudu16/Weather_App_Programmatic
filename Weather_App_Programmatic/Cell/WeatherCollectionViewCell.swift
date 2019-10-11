@@ -10,6 +10,12 @@ import UIKit
 
 class WeatherCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var highLabel: UILabel!
+    @IBOutlet var lowLabel: UILabel!
+    @IBOutlet var weatherImage: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white

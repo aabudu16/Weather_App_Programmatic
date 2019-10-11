@@ -25,12 +25,13 @@ class WeatherView: UIView {
     let enterZipCodeLabel:UILabel = {
         let label = UILabel()
         label.text = "Enter a Zip Code"
+        return label
     }()
     
-    lazy var searchBar:UISearchBar = {
-        let search = UISearchBar()
-        search.barStyle = .default
-        return search
+    let zipCodeTextField:UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "Zip Code"
+        return textfield
     }()
     
     required init?(coder aDecoder: NSCoder) {

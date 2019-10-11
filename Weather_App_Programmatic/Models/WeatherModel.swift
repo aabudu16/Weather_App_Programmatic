@@ -38,9 +38,10 @@ struct DailyDatum: Codable {
     let temperatureMinTime: Int
     let temperatureMax: Double
     let temperatureMaxTime: Int
+    
     func getDateFromTime(time:Int) -> String {
         let date = NSDate(timeIntervalSince1970: Double(time))
-        return date.description
+        return date.description.components(separatedBy: " ")[0]
     }
     func returnHighTemperatureInF(temp:Double) -> String {
         return "High: \(temp)°F"
@@ -53,9 +54,9 @@ struct DailyDatum: Codable {
         case "rain":
             return UIImage(named: "rain")!
         case "cloudy":
-            return UIImage(named: <#T##String#>)
+            return UIImage(named: "pcloudywn")!
         default:
-            <#code#>
+            return UIImage(named: "Placeholder")!
         }
     }
 }

@@ -20,6 +20,7 @@ struct WeatherAPIClient {
         
         guard let url = URL(string: urlString) else {
             completionHandler(.failure(.badURL))
+            return
         }
         
         NetworkHelper.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
