@@ -13,8 +13,8 @@ class WeatherViewController: UIViewController {
     enum Identifier:String{
         case weathersCollectionViewCell
         case weatherCell
-        
     }
+    
     var weatherLocation:WeatherModel!{
         didSet{
             weatherForecastLoaction.text = weatherLocation.timezone.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ")
@@ -25,6 +25,12 @@ class WeatherViewController: UIViewController {
             DispatchQueue.main.async {
                 self.userCollectionView.reloadData()
             }
+        }
+    }
+    
+    var coordinates = String(){
+        didSet{
+            self.userCollectionView.reloadData()
         }
     }
     
@@ -66,11 +72,7 @@ class WeatherViewController: UIViewController {
         setupView()
         createConstraints()
     }
-    var coordinates = String(){
-        didSet{
-            userCollectionView.reloadData()
-        }
-    }
+    
     func getData(zipCode:String){
         ZipCodeHelper.getLatLong(fromZipCode: zipCode) { (result) in
             switch result{
@@ -103,37 +105,47 @@ class WeatherViewController: UIViewController {
         self.view.addSubview(zipCodeTextField)
     }
     
-   private func createConstraints() {
+    private func createConstraints() {
         
         weatherForecastLoaction.translatesAutoresizingMaskIntoConstraints = false
         weatherForecastLoaction.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         weatherForecastLoaction.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         weatherForecastLoaction.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         weatherForecastLoaction.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    
-    userCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    userCollectionView.topAnchor.constraint(equalTo: weatherForecastLoaction.bottomAnchor).isActive = true
-    userCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-    userCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-    
-    zipCodeTextField.textColor = .red
-    zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
-    zipCodeTextField.topAnchor.constraint(equalTo: userCollectionView.bottomAnchor, constant: 10).isActive = true
-    zipCodeTextField.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-    zipCodeTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    zipCodeTextField.widthAnchor.constraint(equalToConstant: 120).isActive = true
-    zipCodeTextField.becomeFirstResponder()
-    
-    enterZipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
-    enterZipCodeLabel.topAnchor.constraint(equalTo: zipCodeTextField.bottomAnchor, constant: 10).isActive = true
-    enterZipCodeLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-    enterZipCodeLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    
-    enterZipCodeLabel.text = "Enter a ZipCode"
+        
+        userCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        userCollectionView.topAnchor.constraint(equalTo: weatherForecastLoaction.bottomAnchor).isActive = true
+        userCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        userCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        
+        zipCodeTextField.textColor = .red
+        zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        zipCodeTextField.topAnchor.constraint(equalTo: userCollectionView.bottomAnchor, constant: 10).isActive = true
+        zipCodeTextField.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        zipCodeTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        zipCodeTextField.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        zipCodeTextField.becomeFirstResponder()
+        
+        enterZipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
+        enterZipCodeLabel.topAnchor.constraint(equalTo: zipCodeTextField.bottomAnchor, constant: 10).isActive = true
+        enterZipCodeLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        enterZipCodeLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        enterZipCodeLabel.text = "Enter a ZipCode"
     }
 }
 extension WeatherViewController: UICollectionViewDelegate{
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let weatherDetailedVC = WeatherDetailedViewController()
+        
+        
+        let info = weather[indexPath.item]
+        let currentWeatherLocation = [weatherLocation]
+       weatherDetailedVC.weatherDetail = info
+        weatherDetailedVC.currentLocationDetail = currentWeatherLocation[0]
+       
+        self.navigationController?.pushViewController(weatherDetailedVC, animated: true)
+    }
 }
 extension WeatherViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -145,12 +157,13 @@ extension WeatherViewController: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.weathersCollectionViewCell.rawValue, for: indexPath) as? WeathersCollectionViewCell else {return UICollectionViewCell()}
         
         let info = weather[indexPath.item]
+        CustomLayer.shared.createCustomlayer(layer: cell.layer)
         cell.dateLabel.text = info.getDateFromTime(time: info.time)
         cell.highLabel.text = info.returnHighTemperatureInF(temp: info.temperatureHigh)
         cell.lowLabel.text = info.returnLowTemperatureInF(temp: info.temperatureLow)
         cell.weatherImage.image = info.returnPictureBasedOnIcon(icon: info.icon)
-    
-       return cell
+        
+        return cell
     }
     
     

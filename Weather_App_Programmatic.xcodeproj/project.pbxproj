@@ -24,10 +24,11 @@
 		85FB55152350D011009D6BBA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB55142350D011009D6BBA /* WeatherView.swift */; };
 		85FB551F2351044B009D6BBA /* CALayer-CustomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB551E2351044B009D6BBA /* CALayer-CustomExtension.swift */; };
 		85FB5521235116F6009D6BBA /* WeathersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB5520235116F6009D6BBA /* WeathersCollectionViewCell.swift */; };
-		85FB5523235120C7009D6BBA /* CustomButton - Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB5522235120C7009D6BBA /* CustomButton - Extension.swift */; };
+		85FB5523235120C7009D6BBA /* CustomLabel - Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB5522235120C7009D6BBA /* CustomLabel - Extension.swift */; };
 		85FB552C23512775009D6BBA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552A23512775009D6BBA /* PhotoModel.swift */; };
 		85FB552D23512775009D6BBA /* favoritePhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552B23512775009D6BBA /* favoritePhotosModel.swift */; };
 		85FB552F235129E5009D6BBA /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */; };
+		85FB553123512F1D009D6BBA /* WeatherDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB553023512F1D009D6BBA /* WeatherDetailedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +63,11 @@
 		85FB55142350D011009D6BBA /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		85FB551E2351044B009D6BBA /* CALayer-CustomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer-CustomExtension.swift"; sourceTree = "<group>"; };
 		85FB5520235116F6009D6BBA /* WeathersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeathersCollectionViewCell.swift; sourceTree = "<group>"; };
-		85FB5522235120C7009D6BBA /* CustomButton - Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomButton - Extension.swift"; sourceTree = "<group>"; };
+		85FB5522235120C7009D6BBA /* CustomLabel - Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomLabel - Extension.swift"; sourceTree = "<group>"; };
 		85FB552A23512775009D6BBA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		85FB552B23512775009D6BBA /* favoritePhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritePhotosModel.swift; sourceTree = "<group>"; };
 		85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
+		85FB553023512F1D009D6BBA /* WeatherDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +118,7 @@
 				85FB54FD2350BDB8009D6BBA /* Persistence */,
 				85FB54F42350BD86009D6BBA /* Network */,
 				85FB54DD2350BB97009D6BBA /* LaunchScreen.storyboard */,
-				85FB5524235125F6009D6BBA /* Extension */,
+				85FB5524235125F6009D6BBA /* Custom Extension */,
 				85FB54E02350BB97009D6BBA /* Info.plist */,
 				85FB551C2350E661009D6BBA /* Cell */,
 			);
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				85FB54D62350BB95009D6BBA /* WeatherViewController.swift */,
+				85FB553023512F1D009D6BBA /* WeatherDetailedViewController.swift */,
 				85FB55082350BFA4009D6BBA /* FavoriteViewController.swift */,
 			);
 			path = Controllers;
@@ -196,13 +199,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		85FB5524235125F6009D6BBA /* Extension */ = {
+		85FB5524235125F6009D6BBA /* Custom Extension */ = {
 			isa = PBXGroup;
 			children = (
 				85FB551E2351044B009D6BBA /* CALayer-CustomExtension.swift */,
-				85FB5522235120C7009D6BBA /* CustomButton - Extension.swift */,
+				85FB5522235120C7009D6BBA /* CustomLabel - Extension.swift */,
 			);
-			path = Extension;
+			path = "Custom Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,13 +310,14 @@
 			files = (
 				85FB552C23512775009D6BBA /* PhotoModel.swift in Sources */,
 				85FB55092350BFA4009D6BBA /* FavoriteViewController.swift in Sources */,
+				85FB553123512F1D009D6BBA /* WeatherDetailedViewController.swift in Sources */,
 				85FB54FA2350BD86009D6BBA /* AppError.swift in Sources */,
 				85FB54D72350BB95009D6BBA /* WeatherViewController.swift in Sources */,
 				85FB55152350D011009D6BBA /* WeatherView.swift in Sources */,
 				85FB552D23512775009D6BBA /* favoritePhotosModel.swift in Sources */,
 				85FB5521235116F6009D6BBA /* WeathersCollectionViewCell.swift in Sources */,
 				85FB55032350BDDC009D6BBA /* WeatherAPIClient.swift in Sources */,
-				85FB5523235120C7009D6BBA /* CustomButton - Extension.swift in Sources */,
+				85FB5523235120C7009D6BBA /* CustomLabel - Extension.swift in Sources */,
 				85FB55002350BDB8009D6BBA /* AnimePersistence.swift in Sources */,
 				85FB55072350BE6E009D6BBA /* ZipCodeHelper.swift in Sources */,
 				85FB55052350BE0A009D6BBA /* WeatherModel.swift in Sources */,
