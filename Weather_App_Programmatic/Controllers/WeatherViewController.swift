@@ -49,6 +49,7 @@ class WeatherViewController: UIViewController {
     let zipCodeTextField:UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Zip Code"
+        textfield.textAlignment = .center
         return textfield
     }()
     
@@ -76,8 +77,12 @@ class WeatherViewController: UIViewController {
     func getData(zipCode:String){
         ZipCodeHelper.getLatLong(fromZipCode: zipCode) { (result) in
             switch result{
-            case .failure(let error):
-                print(error)
+            case .failure( _):
+                let alert = UIAlertController(title: "Sorry", message: "Please enter a valid zip code", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+                
             case .success(let lat, let long):
                 self.coordinates = "\(lat),\(long)"
                 
