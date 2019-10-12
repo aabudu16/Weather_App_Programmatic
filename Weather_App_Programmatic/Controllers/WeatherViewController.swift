@@ -17,7 +17,7 @@ class WeatherViewController: UIViewController {
     
     var weatherLocation:WeatherModel!{
         didSet{
-            weatherForecastLoaction.text = weatherLocation.timezone.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ")
+            weatherForecastLoaction.text = weatherLocation.timezone.components(separatedBy: "/")[1]
         }
     }
     var weather = [DailyDatum](){
@@ -111,7 +111,6 @@ class WeatherViewController: UIViewController {
     }
     
     private func createConstraints() {
-        
         weatherForecastLoaction.translatesAutoresizingMaskIntoConstraints = false
         weatherForecastLoaction.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         weatherForecastLoaction.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
