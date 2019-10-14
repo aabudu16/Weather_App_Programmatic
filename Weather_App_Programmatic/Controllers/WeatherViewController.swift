@@ -14,12 +14,8 @@ class WeatherViewController: UIViewController {
         case weathersCollectionViewCell
         case weatherCell
     }
+
     
-    var weatherLocation:WeatherModel!{
-        didSet{
-            weatherForecastLoaction.text = weatherLocation.timezone.components(separatedBy: "/")[1]
-        }
-    }
     var weather = [DailyDatum](){
         didSet{
             DispatchQueue.main.async {
@@ -27,7 +23,7 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    
+    var currentLocation = ""
     var coordinates = String(){
         didSet{
             self.userCollectionView.reloadData()
@@ -83,7 +79,7 @@ class WeatherViewController: UIViewController {
                 alert.addAction(action)
                 self.present(alert, animated: true, completion: nil)
                 
-            case .success(let lat, let long):
+            case .success(let lat, let long, let name):
                 self.coordinates = "\(lat),\(long)"
                 
                 WeatherAPIClient.shared.fetchData(zipCode: self.coordinates) { (result) in
@@ -94,8 +90,9 @@ class WeatherViewController: UIViewController {
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                     case .success(let weather):
-                        self.weather = weather.daily.data
-                        self.weatherLocation = weather
+                        self.weather = weather
+                       self.currentLocation = name
+                        self.weatherForecastLoaction.text = name
                         
                     }
                 }
@@ -144,10 +141,9 @@ extension WeatherViewController: UICollectionViewDelegate{
         
         
         let info = weather[indexPath.item]
-        let currentWeatherLocation = [weatherLocation]
        weatherDetailedVC.weatherDetail = info
-        weatherDetailedVC.currentLocationDetail = currentWeatherLocation[0]
-       
+        
+        weatherDetailedVC.currentLocationDetail = currentLocation
         self.navigationController?.pushViewController(weatherDetailedVC, animated: true)
     }
 }
