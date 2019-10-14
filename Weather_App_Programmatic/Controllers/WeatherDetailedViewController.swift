@@ -65,6 +65,12 @@ class WeatherDetailedViewController: UIViewController {
         return label
     }()
     
+    let favoriteButton:UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Favorite"
+        button.addTarget(self, action: #selector(handleFavorite), for: .touchUpInside)
+        return button
+    }()
     let cityImageView:UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFit
@@ -89,8 +95,18 @@ class WeatherDetailedViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.currentLocationImage = photos[.random(in: 0...10)].largeImageURL
                     print(self.currentLocationImage)
+                   
                 }
             }
+        }
+    }
+    
+    @objc func handleFavorite(){
+        let myFav = FavoritePhotosModel(imageURL: currentLocationImage )
+        DispatchQueue.global(qos: .utility).async {
+            try? WeatherPhotoPersistenceHelper.manager.save(newPhoto: myFav)
+            
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

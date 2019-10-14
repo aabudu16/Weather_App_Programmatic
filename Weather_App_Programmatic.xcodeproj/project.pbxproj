@@ -14,7 +14,7 @@
 		85FB54F92350BD86009D6BBA /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54F52350BD86009D6BBA /* NetworkHelper.swift */; };
 		85FB54FA2350BD86009D6BBA /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54F62350BD86009D6BBA /* AppError.swift */; };
 		85FB54FC2350BD86009D6BBA /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54F82350BD86009D6BBA /* ImageHelper.swift */; };
-		85FB55002350BDB8009D6BBA /* AnimePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54FE2350BDB8009D6BBA /* AnimePersistence.swift */; };
+		85FB55002350BDB8009D6BBA /* WeatherPhotoPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54FE2350BDB8009D6BBA /* WeatherPhotoPersistence.swift */; };
 		85FB55012350BDB8009D6BBA /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54FF2350BDB8009D6BBA /* PersistenceHelper.swift */; };
 		85FB55032350BDDC009D6BBA /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB55022350BDDC009D6BBA /* WeatherAPIClient.swift */; };
 		85FB55052350BE0A009D6BBA /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB55042350BE0A009D6BBA /* WeatherModel.swift */; };
@@ -29,6 +29,7 @@
 		85FB552D23512775009D6BBA /* favoritePhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552B23512775009D6BBA /* favoritePhotosModel.swift */; };
 		85FB552F235129E5009D6BBA /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */; };
 		85FB553123512F1D009D6BBA /* WeatherDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB553023512F1D009D6BBA /* WeatherDetailedViewController.swift */; };
+		85FB553A2353ED9C009D6BBA /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB55392353ED9C009D6BBA /* FavoriteCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +54,7 @@
 		85FB54F52350BD86009D6BBA /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		85FB54F62350BD86009D6BBA /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		85FB54F82350BD86009D6BBA /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
-		85FB54FE2350BDB8009D6BBA /* AnimePersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimePersistence.swift; sourceTree = "<group>"; };
+		85FB54FE2350BDB8009D6BBA /* WeatherPhotoPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherPhotoPersistence.swift; sourceTree = "<group>"; };
 		85FB54FF2350BDB8009D6BBA /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		85FB55022350BDDC009D6BBA /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
 		85FB55042350BE0A009D6BBA /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		85FB552B23512775009D6BBA /* favoritePhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritePhotosModel.swift; sourceTree = "<group>"; };
 		85FB552E235129E5009D6BBA /* PhotoAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		85FB553023512F1D009D6BBA /* WeatherDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailedViewController.swift; sourceTree = "<group>"; };
+		85FB55392353ED9C009D6BBA /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +150,7 @@
 		85FB54FD2350BDB8009D6BBA /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				85FB54FE2350BDB8009D6BBA /* AnimePersistence.swift */,
+				85FB54FE2350BDB8009D6BBA /* WeatherPhotoPersistence.swift */,
 				85FB54FF2350BDB8009D6BBA /* PersistenceHelper.swift */,
 			);
 			path = Persistence;
@@ -186,6 +188,7 @@
 		85FB551C2350E661009D6BBA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				85FB55392353ED9C009D6BBA /* FavoriteCollectionViewCell.swift */,
 				85FB5520235116F6009D6BBA /* WeathersCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -312,13 +315,14 @@
 				85FB55092350BFA4009D6BBA /* FavoriteViewController.swift in Sources */,
 				85FB553123512F1D009D6BBA /* WeatherDetailedViewController.swift in Sources */,
 				85FB54FA2350BD86009D6BBA /* AppError.swift in Sources */,
+				85FB553A2353ED9C009D6BBA /* FavoriteCollectionViewCell.swift in Sources */,
 				85FB54D72350BB95009D6BBA /* WeatherViewController.swift in Sources */,
 				85FB55152350D011009D6BBA /* WeatherView.swift in Sources */,
 				85FB552D23512775009D6BBA /* favoritePhotosModel.swift in Sources */,
 				85FB5521235116F6009D6BBA /* WeathersCollectionViewCell.swift in Sources */,
 				85FB55032350BDDC009D6BBA /* WeatherAPIClient.swift in Sources */,
 				85FB5523235120C7009D6BBA /* CustomLabel - Extension.swift in Sources */,
-				85FB55002350BDB8009D6BBA /* AnimePersistence.swift in Sources */,
+				85FB55002350BDB8009D6BBA /* WeatherPhotoPersistence.swift in Sources */,
 				85FB55072350BE6E009D6BBA /* ZipCodeHelper.swift in Sources */,
 				85FB55052350BE0A009D6BBA /* WeatherModel.swift in Sources */,
 				85FB55012350BDB8009D6BBA /* PersistenceHelper.swift in Sources */,
