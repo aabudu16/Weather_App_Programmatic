@@ -9,9 +9,7 @@
 import UIKit
 
 class WeathersCollectionViewCell: UICollectionViewCell {
-    
-    var changeColorOfBorderCellFunction: (()->()) = {}
-    override init(frame: CGRect) {
+        override init(frame: CGRect) {
         super.init(frame:frame)
         setUpDateLabelConstraints()
         setUpStackViewConstraints()
@@ -47,32 +45,24 @@ class WeathersCollectionViewCell: UICollectionViewCell {
     }
     
     lazy var temperatureStackView:UIStackView = {
-        return createTemperatureStackView()
+            let stackView = UIStackView(arrangedSubviews: [highLabel,lowLabel])
+            stackView.axis = .vertical
+            stackView.distribution = .fillEqually
+            stackView.alignment = .fill
+            stackView.spacing = 5
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            return stackView
     }()
+    
     lazy var weatherImageAndTemperatureStackView:UIStackView = {
-        return createWeatherImageAndTemperatureStackView()
+            let stacky = UIStackView(arrangedSubviews: [weatherImage,temperatureStackView])
+            stacky.axis = .vertical
+            stacky.distribution = .fillEqually
+            stacky.alignment = .fill
+            stacky.spacing = 10
+            stacky.translatesAutoresizingMaskIntoConstraints = false
+            return stacky
     }()
-    
-    
-    func createTemperatureStackView() -> UIStackView {
-        let stacky = UIStackView(arrangedSubviews: [highLabel,lowLabel])
-        stacky.axis = .vertical
-        stacky.distribution = .fillEqually
-        stacky.alignment = .fill
-        stacky.spacing = 5
-        stacky.translatesAutoresizingMaskIntoConstraints = false
-        return stacky
-    }
-    
-    func createWeatherImageAndTemperatureStackView() -> UIStackView {
-        let stacky = UIStackView(arrangedSubviews: [weatherImage,temperatureStackView])
-        stacky.axis = .vertical
-        stacky.distribution = .fillEqually
-        stacky.alignment = .fill
-        stacky.spacing = 10
-        stacky.translatesAutoresizingMaskIntoConstraints = false
-        return stacky
-    }
     
     
 

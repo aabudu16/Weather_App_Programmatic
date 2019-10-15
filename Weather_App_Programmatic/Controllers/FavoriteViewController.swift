@@ -33,15 +33,19 @@ class FavoriteViewController: UIViewController {
         collectionView.dataSource = self
         return collectionView
     }()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(favoriteCollectionView)
         getImageData()
+
     }
     
     private func getImageData(){
         do {
             let favorite = try WeatherPhotoPersistenceHelper.manager.getPhotos()
             self.favoriteCollectionView.reloadData()
+            print(favorite)
         }catch{
             print(error)
         }

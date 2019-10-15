@@ -14,7 +14,7 @@ class WeatherViewController: UIViewController {
         case weathersCollectionViewCell
         case weatherCell
     }
-
+    
     
     var weather = [DailyDatum](){
         didSet{
@@ -91,7 +91,7 @@ class WeatherViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     case .success(let weather):
                         self.weather = weather
-                       self.currentLocation = name
+                        self.currentLocation = name
                         self.weatherForecastLoaction.text = name
                         
                     }
@@ -108,31 +108,36 @@ class WeatherViewController: UIViewController {
     }
     
     private func createConstraints() {
+        
         weatherForecastLoaction.translatesAutoresizingMaskIntoConstraints = false
-        weatherForecastLoaction.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        weatherForecastLoaction.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        weatherForecastLoaction.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        weatherForecastLoaction.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
         userCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        userCollectionView.topAnchor.constraint(equalTo: weatherForecastLoaction.bottomAnchor).isActive = true
-        userCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        userCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        
         zipCodeTextField.textColor = .red
         zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
-        zipCodeTextField.topAnchor.constraint(equalTo: userCollectionView.bottomAnchor, constant: 10).isActive = true
-        zipCodeTextField.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        zipCodeTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        zipCodeTextField.widthAnchor.constraint(equalToConstant: 120).isActive = true
         zipCodeTextField.becomeFirstResponder()
-        
         enterZipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
-        enterZipCodeLabel.topAnchor.constraint(equalTo: zipCodeTextField.bottomAnchor, constant: 10).isActive = true
-        enterZipCodeLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        enterZipCodeLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
         enterZipCodeLabel.text = "Enter a ZipCode"
+        
+        NSLayoutConstraint.activate([
+            weatherForecastLoaction.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            weatherForecastLoaction.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            weatherForecastLoaction.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            weatherForecastLoaction.heightAnchor.constraint(equalToConstant: 50),
+            
+            
+            userCollectionView.topAnchor.constraint(equalTo: weatherForecastLoaction.bottomAnchor),
+            userCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            userCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            
+            
+            zipCodeTextField.topAnchor.constraint(equalTo: userCollectionView.bottomAnchor, constant: 10),
+            zipCodeTextField.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            zipCodeTextField.heightAnchor.constraint(equalToConstant: 50),
+            zipCodeTextField.widthAnchor.constraint(equalToConstant: 120),
+            
+            enterZipCodeLabel.topAnchor.constraint(equalTo: zipCodeTextField.bottomAnchor, constant: 10),
+            enterZipCodeLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            enterZipCodeLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            ])
     }
 }
 extension WeatherViewController: UICollectionViewDelegate{
@@ -141,7 +146,7 @@ extension WeatherViewController: UICollectionViewDelegate{
         
         
         let info = weather[indexPath.item]
-       weatherDetailedVC.weatherDetail = info
+        weatherDetailedVC.weatherDetail = info
         
         weatherDetailedVC.currentLocationDetail = currentLocation
         self.navigationController?.pushViewController(weatherDetailedVC, animated: true)
