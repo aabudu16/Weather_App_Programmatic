@@ -10,7 +10,7 @@ import UIKit
 
 class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
-        private enum Identifier:String{
+    private enum Identifier:String{
         case favoriteCell
     }
     
@@ -23,8 +23,8 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     lazy var myTableView: UITableView = {
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
-
-      let myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight ))
+        
+        let myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight ))
         myTableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: Identifier.favoriteCell.rawValue)
         myTableView.dataSource = self
         myTableView.delegate = self
@@ -33,10 +33,14 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImageData()
-         self.view.addSubview(myTableView)
+  
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getImageData()
+        self.view.addSubview(myTableView)
+    }
     private func getImageData(){
         do {
             favoriteImage = try WeatherPhotoPersistenceHelper.manager.getPhotos()
@@ -46,8 +50,8 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-   private func actionSheet(tag: Int) {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    private func actionSheet(tag: Int) {
+        let actionSheet = UIAlertController(title: "Delete this Image", message: nil, preferredStyle: .actionSheet)
         
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (delete) in
             //write code to delete a cell
@@ -60,13 +64,15 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                 print(error)
             }
         })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         actionSheet.addAction(delete)
-    present(actionSheet, animated: true, completion: nil)
+        actionSheet.addAction(cancel)
+        present(actionSheet, animated: true, completion: nil)
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         actionSheet(tag: indexPath.row)
-
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteImage.count
@@ -75,17 +81,17 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.favoriteCell.rawValue) as? FavoriteTableViewCell  else {return UITableViewCell()}
-       
+        
         let info = favoriteImage[indexPath.item]
-         cell.favoriteImageView.image = UIImage(data: info.imageData )
+        cell.favoriteImageView.image = UIImage(data: info.imageData )
         
         return cell
-
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 350
         
     }
-
+    
 }
