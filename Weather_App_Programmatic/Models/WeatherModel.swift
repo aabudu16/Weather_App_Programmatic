@@ -75,4 +75,6 @@ struct DailyDatum: Codable {
             return UIImage(named: "image")!
         }
     }
+    
+    
 }

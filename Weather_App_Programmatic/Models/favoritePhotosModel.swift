@@ -9,5 +9,5 @@
 import Foundation
 
 struct FavoritePhotosModel:Codable{
-    let imageURL:String
+    let imageData:Data    
 }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         let weatherVC = WeatherViewController()
-        let favoriteVc = FavoriteViewController()
+        let favoriteVc = FavoriteVC()
         weatherVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         favoriteVc.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let navController = UINavigationController(rootViewController: weatherVC)

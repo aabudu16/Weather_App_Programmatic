@@ -9,7 +9,8 @@
 import UIKit
 
 class WeatherDetailedViewController: UIViewController {
-    
+    let placeHolderImageURL = "https://i.ytimg.com/vi/uCcgkO2wKhk/maxresdefault.jpg"
+    var imageHolder:UIImage!
     var currentLocationDetail:String!{
         didSet{
             getImageURL()
@@ -24,7 +25,7 @@ class WeatherDetailedViewController: UIViewController {
         }
     }
     
-    var currentLocationImage:String!{
+    var currentLocationImage:String?{
         didSet{
             getImage()
         }
@@ -104,14 +105,13 @@ class WeatherDetailedViewController: UIViewController {
     
     private func getImageURL(){
     
-        PhotoAPIClient.shared.getData(searchTerm: currentLocationDetail) { (result) in
+        PhotoAPIClient.shared.getData(searchTerm: currentLocationDetail ?? placeHolderImageURL) { (result) in
             switch result{
             case .failure(let error):
                 print(error)
             case .success(let photos):
                 DispatchQueue.main.async {
-                    self.currentLocationImage = photos[.random(in: 0...10)].largeImageURL
-                   print(self.currentLocationImage)
+                    self.currentLocationImage = photos[0].largeImageURL
                    
                 }
             }
@@ -120,25 +120,35 @@ class WeatherDetailedViewController: UIViewController {
     
     
     private func getImage(){
-        ImageHelper.shared.getImage(urlStr: currentLocationImage) { (result) in
+        ImageHelper.shared.getImage(urlStr: currentLocationImage ?? placeHolderImageURL) { (result) in
             switch result{
             case .failure(let error):
                 print(error)
             case .success(let image):
                 DispatchQueue.main.async {
                     self.cityImageView.image = image
+                    self.imageHolder = image
+                    
                 }
             }
         }
     }
     
     @objc func handleFavorite(){
-        
-        let myFav = FavoritePhotosModel(imageURL: currentLocationImage )
-        DispatchQueue.global(qos: .utility).async {
-            try? WeatherPhotoPersistenceHelper.manager.save(newPhoto: myFav)
+        let favoriteImage = FavoritePhotosModel(imageData: (imageHolder.pngData())!)
+        do {
+            try WeatherPhotoPersistenceHelper.manager.save(newPhoto: favoriteImage)
         }
-        self.dismiss(animated: true, completion: nil)
+        catch {
+            print(error)
+            return
+        }
+        print(favoriteImage)
+        //print(try? WeatherPhotoPersistenceHelper.manager.getPhotos())
+        let alert = UIAlertController(title: "Saved", message: "The image has been saved to your favorites files", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
     
     private func setupDetailedVC(){

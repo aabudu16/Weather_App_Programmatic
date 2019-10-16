@@ -22,11 +22,17 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     func setupView(){
         self.contentView.addSubview(favoriteImageView)
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([favoriteImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5),
-                                     favoriteImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
-                                     favoriteImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
-                                     favoriteImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 5)])
+//        NSLayoutConstraint.activate([favoriteImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5),
+//                                     favoriteImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+//                                     favoriteImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
+//                                     favoriteImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 5)])
         
+        NSLayoutConstraint.activate([
+        favoriteImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+        favoriteImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+        favoriteImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+        favoriteImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+        favoriteImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)])
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -55,13 +55,13 @@ class WeathersCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var weatherImageAndTemperatureStackView:UIStackView = {
-            let stacky = UIStackView(arrangedSubviews: [weatherImage,temperatureStackView])
-            stacky.axis = .vertical
-            stacky.distribution = .fillEqually
-            stacky.alignment = .fill
-            stacky.spacing = 10
-            stacky.translatesAutoresizingMaskIntoConstraints = false
-            return stacky
+            let stackView = UIStackView(arrangedSubviews: [weatherImage,temperatureStackView])
+            stackView.axis = .vertical
+            stackView.distribution = .fillEqually
+            stackView.alignment = .fill
+            stackView.spacing = 10
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            return stackView
     }()
     
     
