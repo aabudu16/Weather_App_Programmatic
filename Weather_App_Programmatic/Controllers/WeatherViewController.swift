@@ -166,7 +166,7 @@ extension WeatherViewController: UICollectionViewDataSource{
         cell.dateLabel.text = info.getDateFromTime(time: info.time)
         cell.highLabel.text = info.returnHighTemperatureInF(temp: info.temperatureHigh)
         cell.lowLabel.text = info.returnLowTemperatureInF(temp: info.temperatureLow)
-        cell.weatherImage.image = info.returnPictureBasedOnIcon(icon: info.icon)
+        cell.weatherImage.image = info.returnPictureBasedOnIcon(icon: info.icon ?? "")
         
         return cell
     }

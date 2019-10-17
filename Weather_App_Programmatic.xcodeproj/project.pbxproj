@@ -10,6 +10,7 @@
 		8500DE432357563A0066F9BC /* weatherJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 8500DE422357563A0066F9BC /* weatherJSON.json */; };
 		8500DE4523577CE20066F9BC /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8500DE4423577CE20066F9BC /* FavoriteVC.swift */; };
 		8500DE472357837D0066F9BC /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8500DE462357837D0066F9BC /* FavoriteTableViewCell.swift */; };
+		8500DEAB23591ED80066F9BC /* weatherJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 8500DE422357563A0066F9BC /* weatherJSON.json */; };
 		85FB54D52350BB95009D6BBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54D42350BB95009D6BBA /* AppDelegate.swift */; };
 		85FB54D72350BB95009D6BBA /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB54D62350BB95009D6BBA /* WeatherViewController.swift */; };
 		85FB54DF2350BB97009D6BBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85FB54DD2350BB97009D6BBA /* LaunchScreen.storyboard */; };
@@ -285,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85FB550F2350CB72009D6BBA /* Assets.xcassets in Resources */,
+				8500DEAB23591ED80066F9BC /* weatherJSON.json in Resources */,
 				85FB54DF2350BB97009D6BBA /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

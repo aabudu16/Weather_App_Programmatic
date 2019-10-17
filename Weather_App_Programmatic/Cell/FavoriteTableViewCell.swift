@@ -23,6 +23,7 @@ class FavoriteTableViewCell: UITableViewCell {
         return imageView
     }()
     
+   
   private func setupView(){
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
         

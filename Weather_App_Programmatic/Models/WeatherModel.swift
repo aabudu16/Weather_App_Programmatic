@@ -13,13 +13,13 @@ struct WeatherModel: Codable {
     let timezone: String
     let daily: Daily
     
-    static func getWeatherDataTest(from data:Data) -> [DailyDatum]? {
+    static func getWeatherDataTest(from data:Data) -> [DailyDatum] {
         do {
             let newWeather = try JSONDecoder().decode(WeatherModel.self, from: data)
             return newWeather.daily.data
         } catch let error {
             print(error)
-            return nil
+            return []
         }
     }
 }
@@ -31,13 +31,13 @@ enum Icon: String, Codable {
 // MARK: - Daily
 struct Daily: Codable {
     let summary: String
-    let icon: Icon
+    let icon: Icon?
     let data: [DailyDatum]
 }
 // MARK: - DailyDatum
 struct DailyDatum: Codable {
     let time: Int
-    let summary, icon: String
+    let summary, icon: String?
     let sunriseTime, sunsetTime: Int
     let precipIntensity:Double
     let precipProbability: Double
@@ -48,6 +48,8 @@ struct DailyDatum: Codable {
     let temperatureMinTime: Int
     let temperatureMax: Double
     let temperatureMaxTime: Int
+    
+    
     
     func getDateFromTime(time:Int) -> String {
         let date = NSDate(timeIntervalSince1970: Double(time))
@@ -67,8 +69,8 @@ struct DailyDatum: Codable {
             return UIImage(named: "cloudy")!
         case "partly-cloudy-night":
             return UIImage(named: "pcloudyn")!
-        case "clear-day":
-            return UIImage(named: "clear")!
+//        case "clear-day":
+//            return UIImage(named: "clear")!
         case "clear-night":
             return UIImage(named:"clearn")!
         case "partly-cloudy-day":
