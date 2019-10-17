@@ -19,7 +19,6 @@ struct CustomLayer{
         layer.shadowOffset = CGSize(width: 0, height: 5.0)
         layer.shadowRadius = 20.0
         layer.shadowOpacity = 0.5
-        layer.masksToBounds = false
         layer.cornerRadius = 20
     }
 }

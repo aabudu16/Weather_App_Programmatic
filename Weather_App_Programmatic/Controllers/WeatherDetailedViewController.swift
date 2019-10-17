@@ -11,17 +11,18 @@ import UIKit
 class WeatherDetailedViewController: UIViewController {
     let placeHolderImageURL = "https://i.ytimg.com/vi/uCcgkO2wKhk/maxresdefault.jpg"
     var imageHolder:UIImage!
+    
     var currentLocationDetail:String!{
         didSet{
             getImageURL()
-           
+            
         }
     }
     
     var weatherDetail:DailyDatum!{
         didSet{
             setupDetailedVC()
-
+            
         }
     }
     
@@ -78,13 +79,13 @@ class WeatherDetailedViewController: UIViewController {
     }()
     
     lazy var stackViewDetails:UIStackView = {
-            let stackView = UIStackView(arrangedSubviews: [highLabel,lowLabel,sunriseLabel,sunsetLabel,windspeedLabel,percipitationLabel])
-            stackView.axis = .vertical
-            stackView.distribution = .fillEqually
-            stackView.alignment = .fill
-            stackView.spacing = 10
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            return stackView
+        let stackView = UIStackView(arrangedSubviews: [highLabel,lowLabel,sunriseLabel,sunsetLabel,windspeedLabel,percipitationLabel])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private var saveButton = UIBarButtonItem()
@@ -104,15 +105,19 @@ class WeatherDetailedViewController: UIViewController {
     }
     
     private func getImageURL(){
-    
-        PhotoAPIClient.shared.getData(searchTerm: currentLocationDetail ?? placeHolderImageURL) { (result) in
+        
+        PhotoAPIClient.shared.getData(searchTerm: currentLocationDetail) { (result) in
             switch result{
             case .failure(let error):
                 print(error)
             case .success(let photos):
                 DispatchQueue.main.async {
-                    self.currentLocationImage = photos[0].largeImageURL
-                   
+                    if let imageURL = photos.first?.largeImageURL{
+                        self.currentLocationImage = imageURL
+                    }else{
+                        self.currentLocationImage = self.placeHolderImageURL
+                    }
+                    
                 }
             }
         }
@@ -173,30 +178,30 @@ class WeatherDetailedViewController: UIViewController {
     }
     
     func setUpLocationLabelConstraints() {
-    weatherForcastLabel.translatesAutoresizingMaskIntoConstraints = false
+        weatherForcastLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             
-        weatherForcastLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
-        weatherForcastLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-        weatherForcastLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        ])
+            weatherForcastLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            weatherForcastLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            weatherForcastLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            ])
     }
     func setUpImageViewConstraints() {
         
         cityImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        cityImageView.topAnchor.constraint(equalTo: weatherForcastLabel.bottomAnchor, constant: 20),
-        cityImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-        cityImageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        ])
+            cityImageView.topAnchor.constraint(equalTo: weatherForcastLabel.bottomAnchor, constant: 20),
+            cityImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            cityImageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            ])
     }
     func setUpSummaryLabel() {
         currentWeatherLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        currentWeatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 5),
-        currentWeatherLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-        currentWeatherLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        ])
+            currentWeatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 5),
+            currentWeatherLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            currentWeatherLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            ])
     }
     func setUpStackViewDetails() {
         stackViewDetails.translatesAutoresizingMaskIntoConstraints = false
@@ -205,17 +210,17 @@ class WeatherDetailedViewController: UIViewController {
             stackViewDetails.topAnchor.constraint(equalTo: currentWeatherLabel.bottomAnchor, constant: 10),
             stackViewDetails.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             stackViewDetails.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-        stackViewDetails.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        
-    ])
+            stackViewDetails.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            
+            ])
     }
     
     
     
     
-
     
-
+    
+    
     
 }
 

@@ -19,19 +19,24 @@ class Weather_App_ProgrammaticTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testDecodingJson(){
-        guard let pathToData = Bundle.main.path(forResource: "weatherJSON", ofType: "json") else {
-            XCTFail("COuldnt Find json file")
+    private func weatherMODEL() -> Data? {
+        let bundle = Bundle(for: type(of: self))
+        guard let pathToData = bundle.path(forResource: "weatherJSON", ofType: "json")  else {
+            XCTFail("couldn't find Json")
+            return nil
         }
         let url = URL(fileURLWithPath: pathToData)
-        
-        do{
-            data = try Data(contentsOf: url)
-            let weather = try 
-        }catch{
-            
+        do {
+            let data = try Data(contentsOf: url)
+            return data
+        } catch let error {
+            fatalError("couldn't find data \(error)")
         }
     }
-    
-
+    func testLoadWeather () {
+        let data = weatherMODEL() ?? Data()
+        let weather = WeatherModel.getWeatherDataTest(from: data) ?? []
+        XCTAssertTrue(weather.count > 0, "No weather was loaded")
+    }
 }
+

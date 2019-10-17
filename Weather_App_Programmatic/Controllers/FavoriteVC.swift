@@ -26,6 +26,7 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         
         let myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight ))
         myTableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: Identifier.favoriteCell.rawValue)
+        myTableView.backgroundColor = .white
         myTableView.dataSource = self
         myTableView.delegate = self
         return myTableView
@@ -84,13 +85,20 @@ class FavoriteVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         
         let info = favoriteImage[indexPath.item]
         cell.favoriteImageView.image = UIImage(data: info.imageData )
+        CustomLayer.shared.createCustomlayer(layer: cell.layer)
+        cell.favoriteImageView.layer.cornerRadius = 20
+        cell.favoriteImageView.layer.masksToBounds = true
+        cell.layer.cornerRadius = view.frame.width / 2
+       
         
+//        cell.layer.borderWidth = 5
+//        cell.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
+        return view.frame.width
         
     }
     

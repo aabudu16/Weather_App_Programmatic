@@ -12,6 +12,16 @@ import UIKit
 struct WeatherModel: Codable {
     let timezone: String
     let daily: Daily
+    
+    static func getWeatherDataTest(from data:Data) -> [DailyDatum]? {
+        do {
+            let newWeather = try JSONDecoder().decode(WeatherModel.self, from: data)
+            return newWeather.daily.data
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
 }
 enum Icon: String, Codable {
     case cloudy = "cloudy"
@@ -75,6 +85,5 @@ struct DailyDatum: Codable {
             return UIImage(named: "image")!
         }
     }
-    
     
 }
