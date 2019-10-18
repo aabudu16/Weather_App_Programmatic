@@ -11,7 +11,7 @@ import Foundation
 struct WeatherAPIClient {
     static let shared = WeatherAPIClient()
     
-    let secretKey = "62b1f74dc8e686e4532c285fc63794f3"
+    let secretKey = Secret.key
     
     
     func fetchData(zipCode:String, completionHandler: @escaping (Result<[DailyDatum],AppError>)->()){

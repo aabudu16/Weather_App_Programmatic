@@ -69,8 +69,8 @@ struct DailyDatum: Codable {
             return UIImage(named: "cloudy")!
         case "partly-cloudy-night":
             return UIImage(named: "pcloudyn")!
-//        case "clear-day":
-//            return UIImage(named: "clear")!
+        case "clear-day":
+            return UIImage(named: "clear")!
         case "clear-night":
             return UIImage(named:"clearn")!
         case "partly-cloudy-day":
